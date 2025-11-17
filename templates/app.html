@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang = "zh-TW">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <title>CogniActive 精準桌球認知教練</title>
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+
+    <!-- import external CSS and JS -->
+    <link rel = "stylesheet" href = "{{ url_for('static', filename='style/app.css') }}">
+
+    <link rel = "icon" href = "{{ url_for('static', filename='table-tennis.png') }}" type = "image/x-icon">
+</head>
+
+<body>
+    <div class = "container">
+        <h1>🏓 CogniActive 精準桌球認知教練 🏓</h1>
+
+        <div class = "controls">
+            <button class = "btn-back" onclick = "goBack()">
+                ← 返回首頁
+            </button>
+            
+            <button id = "btnCamera" class = "btn-camera" onclick = "toggleCamera()">
+                開啟鏡頭
+            </button>
+            <button id = "btnRecord" class = "btn-record" onclick = "startRecording()" disabled>
+                開始記錄
+            </button>
+            <button id = "btnStop" class = "btn-stop" onclick = "stopRecording()" disabled>
+                結束記錄
+            </button>
+        </div>
+
+        <div id = "status" class = "status" style = "display: none;"></div>
+
+        <div class = "main-content">
+            <div class = "video-section">
+                <h2>即時影像串流</h2>            
+                <img id = "videoFeed" src="" alt="等待鏡頭開啟" style="display: none;"> 
+                <div id = "videoPlaceholder" style = "padding: 100px 0; color: #999;">
+                    點擊「開啟鏡頭」開始追蹤
+                </div>
+            </div>
+
+            <div class = "visualization-section">
+                <div class = "viz-box">
+                    <h3>前視角</h3>
+                    <div id = "plot3d_view1"></div>
+                </div>
+                <div class = "viz-box">
+                    <h3>側視角</h3>
+                    <div id = "plot3d_view2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bebavior items dashboard -->
+        <div class="metrics-dashboard-table">
+            <h2>即時動作評估</h2>
+            
+            <div class="metrics-table">
+                <div class="metric-row metric-header">
+                    <div class="metric-cell">項目</div>
+                    <div class="metric-cell">左手肘角度</div>
+                    <div class="metric-cell">右手肘角度</div>
+                    <div class="metric-cell">動作速度</div>
+                    <div class="metric-cell">加速度</div>
+                </div>
+                
+                <div class="metric-row metric-data">
+                    <div class="metric-cell label">
+                        <span class="metric-icon-small">數值</span>
+                    </div>
+                    <div class="metric-cell value">
+                        <span id="metricLeftAngle" class="metric-number">--</span>
+                        <span class="metric-unit-small">角度</span>
+                    </div>
+                    <div class="metric-cell value">
+                        <span id="metricRightAngle" class="metric-number">--</span>
+                        <span class="metric-unit-small">角度</span>
+                    </div>
+                    <div class="metric-cell value">
+                        <span id="metricSpeed" class="metric-number">--</span>
+                        <span class="metric-unit-small">公尺/秒</span>
+                    </div>
+                    <div class="metric-cell value">
+                        <span id="metricAcceleration" class="metric-number">--</span>
+                        <span class="metric-unit-small">公尺/秒²</span>
+                    </div>
+                </div>
+                
+                <div class="metric-row metric-description">
+                    <div class="metric-cell label-desc">說明</div>
+                    <div class="metric-cell desc">手臂彎曲程度<br><small>參照角度範圍</small></div>
+                    <div class="metric-cell desc">手臂彎曲程度<br><small>參照角度範圍</small></div>
+                    <div class="metric-cell desc">手腕移動變化<br><small>數值越大代表移動越快</small></div>
+                    <div class="metric-cell desc">速度變化<br><small>數值為正代表加速</small></div>
+                </div>
+            </div>
+            
+            <!-- visual bar -->
+            <div class="visual-indicators">
+                <div class="indicator-group">
+                    <div class="indicator-label">角度範圍</div>
+                    <div class="angle-range">
+                        <div class="range-marker" style="left: 0%;">0°<br><small>彎曲</small></div>
+                        <div class="range-marker" style="left: 50%;">90°<br><small>直角</small></div>
+                        <div class="range-marker" style="left: 100%;">180°<br><small>伸直</small></div>
+                        <div class="range-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="indicator-group">
+                    <div class="indicator-label">速度等級</div>
+                    <div class="speed-scale">
+                        <div class="speed-level low">慢速 (0-20)</div>
+                        <div class="speed-level medium">中速 (20-50)</div>
+                        <div class="speed-level high">快速 (50+)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "chart-section">
+            <h2>手臂動作趨勢變化</h2>
+            <div id = "lineChart"></div>
+        </div>
+    </div>
+    
+    <!-- import external JS -->
+    <script src = "{{ url_for('static', filename='script/app.js') }}"></script>
+</body>
+</html>

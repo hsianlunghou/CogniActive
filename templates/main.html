@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniActive 精準桌球認知教練</title>
+    <link rel="stylesheet" href = "{{ url_for('static', filename='style/main.css') }}">
+    <link rel="icon" href="static/table-tennis.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🏓</span>
+                <span class="logo-text">CogniActive</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">首頁</a></li>
+                <li><a href="#training" class="nav-link">訓練項目</a></li>
+                <li><a href="#about" class="nav-link">關於系統</a></li>
+                <li><a href="#contact" class="nav-link">聯絡我們</a></li>
+            </ul>
+
+            <!-- Theme -->
+            <button class="theme-toggle" id="themeToggle" aria-label="切換主題">
+                <span class="theme-icon">🌙</span>
+            </button>
+
+            <button class="nav-toggle" id="navToggle" aria-label="選單">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Container section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-main">CogniActive</span>
+                    <span class="title-sub">精準桌球認知教練</span>
+                </h1>
+                <p class="hero-description">
+                    結合 AI 姿態辨識與動作分析<br>
+                    提供即時回饋，評估運動表現與認知反應能力
+                </p>
+                <div class="hero-buttons">
+                    <a href="#training" class="btn btn-primary">開始訓練</a>
+                    <a href="#about" class="btn btn-secondary">了解更多</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="visual-icon">🎯</div>
+                    <div class="visual-text">精準分析</div>
+                </div>
+                <div class="visual-card">
+                    <div class="visual-icon">⚡</div>
+                    <div class="visual-text">即時回饋</div>
+                </div>
+                <div class="visual-card">
+                    <div class="visual-icon">📊</div>
+                    <div class="visual-text">檢測報告</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training section -->
+    <section id="training" class="training-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">訓練項目</h2>
+                <p class="section-subtitle">選擇適合的訓練模式，評估運動表現</p>
+            </div>
+
+            <div class="training-grid">
+                <!-- Option 1 -->
+                <div class="training-item active" data-training="testing visualization">
+                    <div class="item-badge">上線中</div>
+                    <div class="item-icon">📝</div>
+                    <h3 class="item-title">測試用</h3>
+                    <p class="item-description">
+                        透過即時資訊觀察動作變化趨勢。
+                    </p>
+                    <div class="item-features">
+                        <div class="feature">
+                            <span class="feature-icon">🏃</span>
+                            <span class="feature-text">姿態動作</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📊</span>
+                            <span class="feature-text">差異變化</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📈</span>
+                            <span class="feature-text">趨勢分析</span>
+                        </div>
+                    </div>
+                    <button class="item-button" onclick="navigateToTraining('/testing')">
+                        開始訓練
+                        <span class="button-arrow">→</span>
+                    </button>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="training-item active" data-training="swing-practice">
+                    <div class="item-badge">開發中</div>
+                    <div class="item-icon">🏓</div>
+                    <h3 class="item-title">揮拍訓練</h3>
+                    <p class="item-description">
+                        透過 AI 姿態辨識，即時分析揮拍動作的速度、角度與協調性，
+                        提供精準的動作建議與改善方向。
+                    </p>
+                    <div class="item-features">
+                        <div class="feature">
+                            <span class="feature-icon">⏱️</span>
+                            <span class="feature-text">20 秒訓練</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🎯</span>
+                            <span class="feature-text">10 次揮拍</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📈</span>
+                            <span class="feature-text">趨勢分析</span>
+                        </div>
+                    </div>
+                    <button class="item-button" disabled>
+                        敬請期待
+                    </button>
+                </div>
+
+                <!-- Option 3 -->
+                <div class="training-item coming-soon">
+                    <div class="item-badge disabled">即將推出</div>
+                    <div class="item-icon">🤾</div>
+                    <h3 class="item-title">接球反應訓練</h3>
+                    <p class="item-description">
+                        訓練視覺追蹤與反應速度，透過發球機球路，
+                        提升接球時的判斷力與身體協調性。
+                    </p>
+                    <div class="item-features">
+                        <div class="feature">
+                            <span class="feature-icon">👁️</span>
+                            <span class="feature-text">視覺追蹤</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <span class="feature-text">快速反應</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🎮</span>
+                            <span class="feature-text">協調訓練</span>
+                        </div>
+                    </div>
+                    <button class="item-button" disabled>
+                        敬請期待
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About section -->
+    <section id="about" class="about-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">關於系統</h2>
+                <p class="section-subtitle">運用科技，打造智慧運動訓練平台</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">🤖</div>
+                    <h3 class="about-title">AI 姿態辨識</h3>
+                    <p class="about-text">
+                        採用 Google MediaPipe 技術，即時追蹤 33 個身體關鍵點，
+                        精準分析運動姿態與動作軌跡。
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">💗</div>
+                    <h3 class="about-title">非接觸式心率偵測</h3>
+                    <p class="about-text">
+                        採用 rPPG 技術，利用影像擷取與觀察額頭血流變化，
+                        將其資訊轉換成rPPG訊號來計算心率變化。
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">📊</div>
+                    <h3 class="about-title">資料視覺化</h3>
+                    <p class="about-text">
+                        多維度圖表呈現訓練資料，包含 2D/3D 姿態圖、
+                        速度與角度曲線，讓進步看得見。
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">⚡</div>
+                    <h3 class="about-title">即時回饋</h3>
+                    <p class="about-text">
+                        訓練過程中提供即時視覺提示，
+                        提供使用者客觀資料。
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">📱</div>
+                    <h3 class="about-title">跨平台支援</h3>
+                    <p class="about-text">
+                        支援手機、平板與電腦，
+                        隨時隨地都能進行操作。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">聯絡我們</h2>
+                <p class="section-subtitle">有任何問題或建議？歡迎與我們聯繫</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-text">
+                            <h4>電子郵件</h4>
+                            <p>cogniactive@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🌐</div>
+                        <div class="info-text">
+                            <h4>官方網站</h4>
+                            <p>www.cogniactive.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💬</div>
+                        <div class="info-text">
+                            <h4>服務支援</h4>
+                            <p>週一至週五 09:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">🏓</span>
+                    <span class="logo-text">CogniActive</span>
+                </div>
+                <p class="footer-text">
+                    © 2025 CogniActive. All rights reserved.<br>
+                    精準桌球認知教練系統
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src = "{{ url_for('static', filename='script/main.js') }}"></script>
+</body>
+</html>

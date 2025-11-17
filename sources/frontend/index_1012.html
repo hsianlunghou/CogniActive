@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniActive 精準桌球認知教練</title>
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+
+    <!-- import external CSS and JS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='table-tennis.png') }}" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🏓 CogniActive 精準桌球認知教練 🏓</h1>
+
+        <div class="controls">
+            <button id="btnCamera" class="btn-camera" onclick="toggleCamera()">
+                開啟鏡頭
+            </button>
+            <button id="btnRecord" class="btn-record" onclick="startRecording()" disabled>
+                開始記錄
+            </button>
+            <button id="btnStop" class="btn-stop" onclick="stopRecording()" disabled>
+                結束記錄
+            </button>
+        </div>
+
+        <div id="status" class="status" style="display: none;"></div>
+
+        <div class="main-content">
+            <div class="video-section">
+                <h2>2D Video Streaming</h2>            
+                <img id="videoFeed" src="" alt="等待鏡頭開啟" style="display: none;"> 
+                <div id="videoPlaceholder" style="padding: 100px 0; color: #999;">
+                    點擊「開啟鏡頭」開始追蹤
+                </div>
+            </div>
+
+            <div class="visualization-section">
+                <div class="viz-box">
+                    <h3>View-1</h3>
+                    <div id="plot3d_view1"></div>
+                </div>
+                <div class="viz-box">
+                    <h3>View-2</h3>
+                    <div id="plot3d_view2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h2>Action Datapoints</h2>
+            <div id="lineChart"></div>
+        </div>
+    </div>
+    
+    <!-- import external JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
