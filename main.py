@@ -219,7 +219,7 @@ def index():
 
 @app.route('/testing')
 def option_testing():
-    return render_template('app.html')
+    return render_template('option1.html')
 
 @app.route('/favicon.ico')
 def favicon():
